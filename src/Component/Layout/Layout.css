@@ -1,0 +1,16 @@
+.Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.Header #logo {
+}
+
+.Header #menu {
+    display: flex;
+    
+    color: blue;
+    background-color: aqua;
+}

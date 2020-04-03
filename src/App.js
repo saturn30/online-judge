@@ -1,22 +1,19 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom'
+
+import Main from './Page/Main'
+import MyPage from './Page/MyPage'
+import Problem from './Page/Problem'
+import Workbook from './Page/Workbook'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path='/' component={Main}></Route>
+      <Route path='/mypage' component={MyPage}></Route>
+      <Route path='/problem' component={Problem}></Route>
+      <Route path='/workbook' component={Workbook}></Route>
+    </Switch>
   );
 }
 
