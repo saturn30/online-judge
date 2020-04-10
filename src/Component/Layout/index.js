@@ -1,15 +1,16 @@
 import React from 'react'
 import Header from './Header'
-import './Layout.css'
+import Footer from './Footer'
+import './Layout.scss'
 
 const index = (props) => {
     return (
-        <div>
+        <div className="main">
             <Header />
-            <div>
+            <div className="content">
                 {props.children}
             </div>
-
+            <Footer />
         </div>
     )
 }

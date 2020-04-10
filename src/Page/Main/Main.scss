@@ -1,0 +1,46 @@
+@mixin random-bgr() {
+  background: rgb(random(255), random(255), random(255));
+}
+
+.swiper-container {
+  display: block;
+  height: 20rem;
+  width: 100% !important;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 32rem) {
+    height: 10rem !important;
+  }
+}
+
+.slide_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @for $i from 0 to 4 {
+    &:nth-child(#{$i}) {
+      @include random-bgr();
+    }
+  }
+}
+
+.workbook-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .workbook {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    background-color: blanchedalmond;
+    box-shadow: 3px 3px 3px 3px gray;
+  }
+}

@@ -1,5 +1,7 @@
 import React from 'react'
-import Layout from '../Component/Layout'
+import Layout from '../../Component/Layout'
+
+import './MyPage.scss'
 
 const MyPage = () => {
     return (

@@ -8,9 +8,9 @@ const Header = () => {
                 <Link to="/">JS online-judge</Link>
             </div>
             <div id="menu">
-                <Link to="/workbook">문제집</Link>
-                <Link to="/problem">문제</Link>
-                <Link to="/mypage">내정보</Link>
+                <Link className="menu_item" to="/problemlist">문제목록</Link>
+                <Link className="menu_item" to="/mypage">내정보</Link>
+                <Link className="menu_item" to="/login">로그인</Link>
             </div>
         </div>
     )

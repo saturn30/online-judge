@@ -1,10 +1,11 @@
 import React from 'react'
-import Layout from '../Component/Layout'
+import Layout from '../../Component/Layout'
 
-const Problem = () => {
+const Problem = ({match}) => {
     return (
         <Layout>
             문제
+            {match.params.id}
         </Layout>
     )
 }
