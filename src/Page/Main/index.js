@@ -20,16 +20,14 @@ const SimpleSwiper = () => {
   </Swiper>
 }
 
-
-
 export default () => {
   return (
     <Layout>
       <SimpleSwiper></SimpleSwiper>
       <div className="workbook-container">
-        <div className="workbook">문제집1</div>
-        <div className="workbook">문제집2</div>
-        <div className="workbook">문제집3</div>
+        <div className="workbook">문제1</div>
+        <div className="workbook">문제2</div>
+        <div className="workbook">문제3</div>
       </div>
     </Layout>
   )
