@@ -25,22 +25,9 @@
   }
 }
 
-.workbook-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  .workbook {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 30px;
-    width: 250px;
-    height: 250px;
-    border-radius: 10px;
-    background-color: blanchedalmond;
-    box-shadow: 3px 3px 3px 3px gray;
+.main-problem-container{
+  .main-problem-item{
+    width: 300px;
+    height: 300px;
   }
 }
