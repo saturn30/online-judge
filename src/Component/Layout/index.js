@@ -7,7 +7,7 @@ const index = (props) => {
     return (
         <div className="main">
             <Header />
-            <div className="content">
+            <div className="layout-content">
                 {props.children}
             </div>
             <Footer />
