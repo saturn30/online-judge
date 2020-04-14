@@ -8,6 +8,8 @@ import ProblemList from './Page/ProblemList'
 import Login from './Page/Login'
 import Join from './Page/Join'
 
+import './lib/myBulma.scss'
+
 function App() {
   return (
     <Switch>

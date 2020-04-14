@@ -1,11 +1,14 @@
 import React from "react"
-import "./Layout.scss"
 
 const Footer = () => {
   return (
-    <div className="Footer">
-      <div id="nickname">by soso01</div>
-    </div>
+    <footer className="footer">
+      <div className="content has-text-centered">
+        <p>
+          by  <a href ="https://github.com/soso01">soso01</a>
+        </p>
+      </div>
+    </footer>
   )
 }
 

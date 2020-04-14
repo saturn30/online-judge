@@ -1,68 +1,8 @@
-@import "../../lib/mixin.scss";
 
-.main {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+.navbar-item{
+  height: 100%;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   flex: 1;
-}
-
-.Header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  height: 100px;
-  #logo {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-  }
-  #menu {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    .menu_item {
-      margin: 0px 40px;
-    }
-  }
-}
-
-.Footer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  height: 50px;
-  width: 100%;
-  background-color: #444;
-  color: white;
-  #nickname {
-    margin-right: 50px;
-  }
-}
-
-@include desktop {
-  .Header {
-    width: 70%;
-  }
-}
-
-@include tablet {
-  .Header {
-    width: 80%;
-  }
-}
-
-@include mobile {
-  .Header {
-    width: 100%;
-  }
 }
