@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <Layout>
       <div className="columns">
-        <div className="column is-offset-3-desktop is-half-desktop is-offset-2-tablet is-8-tablet">
+        <div className="column is-offset-3-desktop is-half-desktop is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
           <div className="box" style={{ marginTop: 150 }}>
             <div className="container">
               <p className="has-text-centered login-title">
@@ -32,7 +32,7 @@ const Login = () => {
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <input className="input" type="password" readonly />
+                      <input className="input" type="password" />
                     </p>
                   </div>
                 </div>
