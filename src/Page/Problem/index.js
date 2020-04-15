@@ -6,29 +6,70 @@ import "./Problem.scss"
 const Problem = ({ match }) => {
   return (
     <Layout>
-      <div className="problem-content">
-        문제
-        {match.params.id}
-        <div>표</div>
-        <div className="problem-data-box">
-          <div className="problem-data-title">문제</div>
-          <div className="problem-data-content">내용</div>
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">A + B</h1>
+            <h2 class="subtitle">1001번</h2>
+          </div>
         </div>
-        <div className="problem-data-box">
-          <div className="problem-data-title">입력</div>
-          <div className="problem-data-content">내용</div>
+      </section>
+      <div className="columns" style={{ marginTop: 30 }}>
+        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p>
+              문제
+            </p>
+            <p>
+            두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+            </p>
+          </div>
         </div>
-        <div className="problem-data-box">
-          <div className="problem-data-title">출력</div>
-          <div className="problem-data-content">내용</div>
+      </div>
+      <div className="columns" style={{ marginTop: 10 }}>
+        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p>
+              입력
+            </p>
+            <p>
+              첫째 줄에 A와 B가 주어진다.
+            </p>
+          </div>
         </div>
-        <div className="problem-data-box">
-          <div>예제입력1</div>
-          <div>예제출력1</div>
+      </div>
+      <div className="columns" style={{ marginTop: 10 }}>
+        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p>
+              출력
+            </p>
+            <p>
+            첫째 줄에 A+B를 출력한다.
+            </p>
+          </div>
         </div>
-        <div className="problem-data-box">
-          <div>예제입력2</div>
-          <div>예제출력2</div>
+      </div>
+      <div className="columns" style={{ marginTop: 10 }}>
+        <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p>
+              예제 입력
+            </p>
+            <p>
+              1 2
+            </p>
+          </div>
+        </div>
+        <div className="column is-4-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p>
+              예제 출력
+            </p>
+            <p>
+              3
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
