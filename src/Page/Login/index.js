@@ -8,7 +8,7 @@ const Login = () => {
     <Layout>
       <div className="columns">
         <div className="column is-offset-3-desktop is-half-desktop is-offset-2-tablet is-8-tablet">
-          <div className="box" style={{ marginTop: 100 }}>
+          <div className="box" style={{ marginTop: 150 }}>
             <div className="container">
               <p className="has-text-centered login-title">
                 <strong>로그인</strong>
@@ -20,7 +20,7 @@ const Login = () => {
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <input className="input" type="text" readonly />
+                      <input className="input" type="text" />
                     </p>
                   </div>
                 </div>
@@ -38,9 +38,9 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <div class="login-buttons">
-              <button class="button is-primary">회원가입</button>
-              <button class="button is-link">로그인</button>
+            <div className="login-buttons">
+              <button className="button is-primary">회원가입</button>
+              <button className="button is-link">로그인</button>
             </div>
           </div>
         </div>
