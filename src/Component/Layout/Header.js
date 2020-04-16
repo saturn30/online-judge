@@ -7,7 +7,7 @@ const Header = () => {
     <div className="navbar">
       <div className="navbar-brand">
         <div className="navbar-item">
-          <Link to="/">JS online-judge</Link>
+          <Link to="/" style={{color: 'black'}}>JS online-judge</Link>
         </div>
         <div role="button" className="navbar-burger" onClick={() => setToggleBugger(!toggleBugger)}>
           <span aria-hidden="true"></span>
@@ -18,13 +18,13 @@ const Header = () => {
       <div id="navMenu" className={toggleBugger ? "navbar-menu is-active" : "navbar-menu"}>
         <div className="navbar-start">
           <div className="navbar-item">
-            <Link className="menu_item" to="/problemlist">
+            <Link className="menu_item" to="/problemlist" style={{color: 'black'}}>
               문제목록
             </Link>
           </div>
 
           <div className="navbar-item">
-            <Link className="menu_item" to="/mypage">
+            <Link className="menu_item" to="/mypage" style={{color: 'black'}}>
               내정보
             </Link>
           </div>
@@ -35,7 +35,7 @@ const Header = () => {
           <div className="navbar-item">
             <div className="buttons">
               <div className="button is-primary">
-                <Link className="menu_item" to="/join">
+                <Link className="menu_item" to="/join" style={{color: 'white', fontWeight: 'bold'}}>
                   회원가입
                 </Link>
               </div>
