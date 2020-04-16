@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <Layout>
       <div className="columns">
-        <div className="column is-offset-3-desktop is-half-desktop is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+        <div className="column is-offset-4-desktop is-4-desktop is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
           <div className="box" style={{ marginTop: 150 }}>
             <div className="container">
               <p className="has-text-centered login-title">

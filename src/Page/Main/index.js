@@ -26,12 +26,14 @@ export default () => {
   return (
     <Layout>
       <SimpleSwiper></SimpleSwiper>
-      <div className="columns has-text-centered main-problem-container">
-        <div className="column is-2-desktop is-1-tablet"></div>
-        <div className="box column main-problem-item">문제 1</div>
-        <div className="box column main-problem-item">문제 2</div>
-        <div className="box column main-problem-item">문제 3</div>
-        <div className="column is-2-desktop is-1-tablet"></div>
+      <div className="columns">
+        <div className="column is-offset-2-tablet is-8-tablet">
+          <div className="main-problem-container">
+            <div className="box main-problem-item">문제 1</div>
+            <div className="box main-problem-item">문제 2</div>
+            <div className="box main-problem-item">문제 3</div>
+          </div>
+        </div>
       </div>
     </Layout>
   )
