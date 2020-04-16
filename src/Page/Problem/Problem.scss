@@ -1,23 +1,10 @@
-.problem-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  .problem-data-box {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    min-height: 200px;
-    border-bottom: 1px solid black;
-    .problem-data-title {
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin: 20px;
-    }
-    .problem-data-content {
-      margin: 20px;
-      margin-top: 0px;
-    }
-  }
+.problem-data-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
+.problem-submit-button {
+  display: flex !important;
+  justify-content : flex-end;
+}

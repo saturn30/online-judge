@@ -16,6 +16,7 @@ function App() {
       <Route exact path='/' component={Main}></Route>
       <Route path='/mypage' component={MyPage}></Route>
       <Route path='/problem/:id' component={Problem}></Route>
+      <Route path='/problem/submit/:id' component={Problem}></Route>
       <Route path='/problemlist' component={ProblemList}></Route>
       <Route path='/login' component={Login}></Route>
       <Route path='/join' component={Join}></Route>

@@ -6,18 +6,27 @@ import "./Problem.scss"
 const Problem = ({ match }) => {
   return (
     <Layout>
-      <section class="hero is-primary">
-        <div class="hero-body">
-          <div class="container">
-            <h1 class="title">A + B</h1>
-            <h2 class="subtitle">1001번</h2>
+      <section className="hero is-primary">
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title">A + B</h1>
+            <h2 className="subtitle">1001번</h2>
           </div>
         </div>
       </section>
+
       <div className="columns" style={{ marginTop: 30 }}>
+        <div className="column problem-submit-button is-offset-8 is-2 is-offset-10-mobile is-1-mobile">
+          <div className="button is-info is-light">
+            제출하기
+          </div>
+        </div>
+      </div>
+
+      <div className="columns">
         <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
-            <p>
+            <p className="problem-data-title">
               문제
             </p>
             <p>
@@ -26,10 +35,10 @@ const Problem = ({ match }) => {
           </div>
         </div>
       </div>
-      <div className="columns" style={{ marginTop: 10 }}>
+      <div className="columns">
         <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
-            <p>
+            <p className="problem-data-title">
               입력
             </p>
             <p>
@@ -38,10 +47,10 @@ const Problem = ({ match }) => {
           </div>
         </div>
       </div>
-      <div className="columns" style={{ marginTop: 10 }}>
+      <div className="columns">
         <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
-            <p>
+            <p className="problem-data-title">
               출력
             </p>
             <p>
@@ -50,10 +59,10 @@ const Problem = ({ match }) => {
           </div>
         </div>
       </div>
-      <div className="columns" style={{ marginTop: 10 }}>
+      <div className="columns">
         <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
-            <p>
+            <p className="problem-data-title">
               예제 입력
             </p>
             <p>
@@ -63,7 +72,7 @@ const Problem = ({ match }) => {
         </div>
         <div className="column is-4-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
-            <p>
+            <p className="problem-data-title">
               예제 출력
             </p>
             <p>
