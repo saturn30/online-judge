@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Problem.associate = function(models) {
     // associations can be defined here
+    Problem.hasMany(models.User_problem)
+    Problem.hasMany(models.Submit)
+    Problem.hasMany(models.Problem_judge)
+    Problem.hasMany(models.Problem_example)
   };
   return Problem;
 };

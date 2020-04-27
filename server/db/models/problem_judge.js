@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Problem_judge.associate = function(models) {
     // associations can be defined here
+    Problem_judge.hasMany(models.Submit_result)
   };
   return Problem_judge;
 };
