@@ -1,5 +1,8 @@
 const express = require("express")
+const cors = require("cors")
 const sequelize = require("./db/models").sequelize
+
+const authRouter = require("./router/auth")
 
 const app = express()
 sequelize
@@ -14,6 +17,15 @@ sequelize
     process.exit()
   })
 
+const corsOptions = {
+  origin: "http://localhost:3000", // 허락하고자 하는 요청 주소
+  credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.
+}
+app.use(cors(corsOptions))
+app.use(express.json())
+
+app.use("/auth", authRouter)
+
 app.listen(3030, () => {
-  console.log('서버연결')
+  console.log("서버연결")
 })
