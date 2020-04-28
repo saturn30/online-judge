@@ -4,13 +4,17 @@ import App from "./App"
 import { BrowserRouter } from "react-router-dom"
 import * as serviceWorker from "./serviceWorker"
 
-import './lib/normalize.css'
+import { CookiesProvider } from "react-cookie"
+
+import "./lib/normalize.css"
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )

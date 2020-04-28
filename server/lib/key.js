@@ -1,0 +1,1 @@
+module.export.jwt_secret = ":144ffsx:xz"

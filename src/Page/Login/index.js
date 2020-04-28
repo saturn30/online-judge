@@ -1,9 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../../Component/Layout"
+import { Link } from "react-router-dom"
+import axios from "axios"
+import { useCookies } from 'react-cookie';
 
+import { serverIP } from "../../lib/key"
 import "./Login.scss"
 
 const Login = () => {
+  const [id, setId] = useState("")
+  const [pw, setPw] = useState("")
+  const [cookies, setCookie] = useCookies(['token'])
+
+  const submit = async () => {
+    const res = await axios.post(serverIP + "/auth/login", { id, pw })
+    console.log(res.data)
+    if (res.data.message === "success") {
+      setCookie('token', res.data.token)
+      document.location.href = "/"
+    } else {
+      alert(res.data.message)
+    }
+  }
+
   return (
     <Layout>
       <div className="columns">
@@ -20,7 +39,7 @@ const Login = () => {
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <input className="input" type="text" />
+                      <input className="input" type="text" value={id} onChange={(e) => setId(e.target.value)} />
                     </p>
                   </div>
                 </div>
@@ -32,15 +51,21 @@ const Login = () => {
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <input className="input" type="password" />
+                      <input className="input" type="password" value={pw} onChange={(e) => setPw(e.target.value)} />
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="login-buttons">
-              <button className="button is-primary">회원가입</button>
-              <button className="button is-link">로그인</button>
+              <button className="button is-primary">
+                <Link style={{ color: "white" }} to="/join">
+                  회원가입
+                </Link>
+              </button>
+              <button className="button is-link" onClick={submit}>
+                로그인
+              </button>
             </div>
           </div>
         </div>
