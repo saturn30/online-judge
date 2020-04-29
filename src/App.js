@@ -8,6 +8,7 @@ import ProblemList from './Page/ProblemList'
 import Login from './Page/Login'
 import Join from './Page/Join'
 import Submit from './Page/Submit'
+import ProblemCreate from './Page/ProblemCreate'
 
 import './lib/myBulma.scss'
 
@@ -21,6 +22,7 @@ function App() {
       <Route path='/problemlist' component={ProblemList}></Route>
       <Route path='/login' component={Login}></Route>
       <Route path='/join' component={Join}></Route>
+      <Route path='/problemcreate' component={ProblemCreate}></Route>
     </Switch>
   );
 }

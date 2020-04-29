@@ -10,7 +10,7 @@ import "./Login.scss"
 const Login = () => {
   const [id, setId] = useState("")
   const [pw, setPw] = useState("")
-  const [cookies, setCookie] = useCookies(['token'])
+  const [, setCookie] = useCookies(['token'])
 
   const submit = async () => {
     const res = await axios.post(serverIP + "/auth/login", { id, pw })

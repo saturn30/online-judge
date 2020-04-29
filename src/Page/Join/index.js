@@ -10,7 +10,7 @@ const Join = () => {
   const [pwCheck, setPwCheck] = useState("")
 
   const submit = async () => {
-    if (ID.length >= 6 && pw.length >= 6 && pw === pwCheck) {
+    if (ID.length >= 4 && pw.length >= 6 && pw === pwCheck) {
       const res = await axios.post(serverIP + '/auth/join', {ID, pw})
       console.log(res.data)
       if(res.data === 'exist') alert('이미 존재하는 아이디입니다.')
@@ -36,7 +36,7 @@ const Join = () => {
               <label className="label">아이디</label>
               <div className="control has-icons-left has-icons-right">
                 <input
-                  className={ID === "" ? "input" : "input " + (ID.length >= 6 ? "is-success" : "is-danger")}
+                  className={ID === "" ? "input" : "input " + (ID.length >= 4 ? "is-success" : "is-danger")}
                   type="text"
                   placeholder="아이디를 입력하세요."
                   value={ID}
@@ -45,7 +45,7 @@ const Join = () => {
                 <span className="icon is-small is-left">
                   <i className="fas fa-user"></i>
                 </span>
-                {ID === "" ? null : ID.length >= 6 ? (
+                {ID === "" ? null : ID.length >= 4 ? (
                   <span className="icon is-small is-right">
                     <i className="fas fa-check"></i>
                   </span>
@@ -55,7 +55,7 @@ const Join = () => {
                   </span>
                 )}
               </div>
-              <p className={"help " + (ID.length >= 6 ? "is-success" : "is-danger")}>6자 이상 입력해주세요.</p>
+              <p className={"help " + (ID.length >= 4 ? "is-success" : "is-danger")}>4자 이상 입력해주세요.</p>
             </div>
 
             <div className="field">

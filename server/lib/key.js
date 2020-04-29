@@ -1,1 +1,1 @@
-module.export.jwt_secret = ":144ffsx:xz"
+module.exports.jwt_secret = ":144ffsx:xz"

@@ -12,7 +12,12 @@ const ProblemList = () => {
         <div className="column is-offset-2-tablet is-8-tablet">
           <div className="box">
             <div className="table-container">
-              <div>전체 문제 목록</div>
+              <div className="container">
+                <div className="is-pulled-left">전체 문제 목록</div>
+                <div className="is-pulled-right">
+                  <Link to="/problemcreate">문제 생성하기</Link>
+                </div>
+              </div>
               <table className="table is-hoverable is-fullwidth problem-list-table">
                 <thead>
                   <tr>
