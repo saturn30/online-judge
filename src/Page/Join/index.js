@@ -94,7 +94,7 @@ const Join = () => {
                       : "input " + (pw.length >= 6 && pw === pwCheck ? "is-success" : "is-danger")
                   }
                   type="password"
-                  placeholder="Email input"
+                  placeholder="비밀번호를 재입력해주세요."
                   value={pwCheck}
                   onChange={(e) => setPwCheck(e.target.value)}
                 />
