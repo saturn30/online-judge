@@ -3,6 +3,7 @@ const cors = require("cors")
 const sequelize = require("./db/models").sequelize
 
 const authRouter = require("./router/auth")
+const problemRouter = require('./router/problem')
 
 const app = express()
 sequelize
@@ -25,6 +26,8 @@ app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use("/auth", authRouter)
+app.use('/problem', problemRouter)
+
 
 app.listen(3030, () => {
   console.log("서버연결")

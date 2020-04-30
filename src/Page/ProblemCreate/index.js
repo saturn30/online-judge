@@ -31,6 +31,12 @@ const ProblemCreate = () => {
     checkadmin()
   }, [cookies])
 
+  const submit = async () => {
+    const res = await axios.post(serverIP + "/problem/create", submitData, {
+      headers: { Authorization: cookies.token },
+    })
+  }
+
   const make = () => (
     <Layout>
       <div className="columns" style={{ marginTop: 40 }}>
@@ -100,6 +106,28 @@ const ProblemCreate = () => {
           </div>
         </div>
       </div>
+
+      <div className="columns">
+        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p className="problem-data-title">입출력 데이터 정의</p>
+            <div>
+              <p className="problem-data-title">입력</p>
+              <table class="table" style={{width: "100%"}}>
+                <thead>
+                  <tr>
+                    <th>이름</th> <th>유형</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div>
+              <p className="problem-data-title">출력</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {submitData.example_data.map((v, i) => (
         <div className="columns" key={i}>
           <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
@@ -152,6 +180,13 @@ const ProblemCreate = () => {
           }
         >
           예제 데이터 추가
+        </button>
+
+        <button
+          className="button is-danger"
+          onClick={() => setSubminData({ ...submitData, example_data: [...submitData.example_data.slice(0, -1)] })}
+        >
+          예제 데이터 삭제
         </button>
       </div>
 
@@ -208,10 +243,18 @@ const ProblemCreate = () => {
         >
           채점 데이터 추가
         </button>
+        <button
+          className="button is-danger"
+          onClick={() => setSubminData({ ...submitData, judge_data: [...submitData.judge_data.slice(0, -1)] })}
+        >
+          채점 데이터 삭제
+        </button>
       </div>
 
       <div className="buttons is-centered">
-        <button className="button is-info">제출</button>
+        <button className="button is-info" onClick={() => submit()}>
+          제출
+        </button>
       </div>
     </Layout>
   )
