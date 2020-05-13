@@ -35,6 +35,7 @@ const ProblemCreate = () => {
     const res = await axios.post(serverIP + "/problem/create", submitData, {
       headers: { Authorization: cookies.token },
     })
+    console.log(res.data)
   }
 
   const make = () => (
@@ -103,27 +104,6 @@ const ProblemCreate = () => {
               value={submitData.output_info}
               onChange={(e) => setSubminData({ ...submitData, output_info: e.target.value })}
             ></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div className="columns">
-        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
-          <div className="box container">
-            <p className="problem-data-title">입출력 데이터 정의</p>
-            <div>
-              <p className="problem-data-title">입력</p>
-              <table class="table" style={{width: "100%"}}>
-                <thead>
-                  <tr>
-                    <th>이름</th> <th>유형</th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-            <div>
-              <p className="problem-data-title">출력</p>
-            </div>
           </div>
         </div>
       </div>
