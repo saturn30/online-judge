@@ -8,7 +8,7 @@ import "ace-builds/src-noconflict/mode-javascript"
 import "ace-builds/src-noconflict/theme-monokai"
 
 const Submit = ({ match }) => {
-  const [code, setCode] = useState("function(a, b) {\n\tlet answer;\n\treturn answer;\n}")
+  const [code, setCode] = useState("function(input) {\n\tlet answer = [];\n\n\treturn answer;\n}")
   return (
     <Layout>
       <section className="hero is-primary">
