@@ -1,17 +1,57 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../../Component/Layout"
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom"
+
+import axios from "axios"
+import { serverIP } from "../../lib/key"
 
 import "./Problem.scss"
 
 const Problem = ({ match }) => {
+  const [data, setData] = useState({})
+  useEffect(() => {
+    const fetch = async () => {
+      const fetchData = await axios.get(serverIP + "/problem/" + match.params.id)
+      console.log(fetchData.data)
+      setData(fetchData.data)
+    }
+    fetch()
+  }, [match.params.id])
+
+  const printInfo = (title, content) => (
+    <div className="columns">
+      <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+        <div className="box container">
+          <p className="problem-data-title">{title}</p>
+          <p>{content}</p>
+        </div>
+      </div>
+    </div>
+  )
+  const printExample = (v, i) => (
+    <div className="columns" style={{ marginBottom: 30 }} key = {i}>
+      <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
+        <div className="box container">
+          <p className="problem-data-title">예제 입력</p>
+          <p>{v.input_example}</p>
+        </div>
+      </div>
+      <div className="column is-4-tablet is-offset-1-mobile is-10-mobile">
+        <div className="box container">
+          <p className="problem-data-title">예제 출력</p>
+          <p>{v.output_example}</p>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <Layout>
       <section className="hero is-primary">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title">A + B</h1>
-            <h2 className="subtitle">1001번</h2>
+            <h1 className="title">{data.title}</h1>
+            <h2 className="subtitle">{data.id}번</h2>
           </div>
         </div>
       </section>
@@ -24,31 +64,12 @@ const Problem = ({ match }) => {
         </div>
       </div>
 
-      <div className="columns">
-        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
-          <div className="box container">
-            <p className="problem-data-title">문제</p>
-            <p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.</p>
-          </div>
-        </div>
-      </div>
-      <div className="columns">
-        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
-          <div className="box container">
-            <p className="problem-data-title">입력</p>
-            <p>첫째 줄에 A와 B가 주어진다.</p>
-          </div>
-        </div>
-      </div>
-      <div className="columns">
-        <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
-          <div className="box container">
-            <p className="problem-data-title">출력</p>
-            <p>첫째 줄에 A+B를 출력한다.</p>
-          </div>
-        </div>
-      </div>
-      <div className="columns" style={{marginBottom: 30}}>
+      {printInfo("문제", data.problem_info)}
+      {printInfo("입력", data.input_info)}
+      {printInfo("출력", data.output_info)}
+      {data.Problem_examples && data.Problem_examples.map((v, i) => printExample(v, i))}
+
+      <div className="columns" style={{ marginBottom: 30 }}>
         <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
             <p className="problem-data-title">예제 입력</p>
