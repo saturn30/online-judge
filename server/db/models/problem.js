@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     problem_info: DataTypes.STRING,
     input_info: DataTypes.STRING,
     output_info: DataTypes.STRING,
-    limit: DataTypes.INTEGER
+    limit: DataTypes.INTEGER,
+    total_submit: {type: DataTypes.INTEGER, defaultValue: 0},
+    total_hit: {type: DataTypes.INTEGER, defaultValue: 0},
   }, {});
   Problem.associate = function(models) {
     // associations can be defined here
