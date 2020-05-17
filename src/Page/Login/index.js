@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Layout from "../../Component/Layout"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import axios from "axios"
 import { useCookies } from 'react-cookie';
 

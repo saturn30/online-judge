@@ -1,11 +1,41 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Layout from "../../Component/Layout"
+import axios from "axios"
+import { serverIP } from "../../lib/key"
+//import { useCookies } from "react-cookie"
 
 import { Link } from "react-router-dom"
 
 import "./ProblemList.scss"
 
 const ProblemList = () => {
+  //const [cookies] = useCookies(["token"]) - 나중에 유저 정답여부 확인
+  const [page, setPage] = useState(0)
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    const fetch = async () => {
+      const fetchData = await axios.get(serverIP + "/problem/list/" + page)
+      setData(fetchData.data)
+    }
+    fetch()
+  }, [page])
+
+  const pageButton = () => {
+    const arr = []
+    for(let i = 0; i < data.count / 15; i++){
+      if(arr.length >=5) break;
+      if(i < page - 2) continue;
+      arr.push(i);
+    }
+    return arr.map((v, i) => 
+    <li key={i}>
+      <div className={`pagination-link ${page === v ? "is-current" : null}`} onClick={() => setPage(v)}>
+        {v + 1}
+      </div>
+    </li>)
+  }
+
   return (
     <Layout>
       <div className="columns" style={{ marginTop: 20 }}>
@@ -29,112 +59,36 @@ const ProblemList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1001</td>
-                    <td>
-                      <Link to="/problem/1001">
-                        <span>A+B</span>
-                      </Link>
-                    </td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>A+B</td>
-                    <td>100</td>
-                    <td>40%</td>
-                    <td>정답</td>
-                  </tr>
+                  {!data.count
+                    ? null
+                    : data.rows.map((v, i) => (
+                        <tr key={i}>
+                          <td>{v.id}</td>
+                          <td>
+                            <Link to={"/problem/" + v.id}>
+                              <span>{v.title}</span>
+                            </Link>
+                          </td>
+                          <td>{v.total_submit}</td>
+                          <td>{v.total_submit ? v.total_hit / v.total_submit : 0} %</td>
+                          <td>정답</td>
+                        </tr>
+                      ))}
                 </tbody>
               </table>
-
               <div>
                 <nav className="pagination is-centered" role="navigation" aria-label="pagination">
-                  <div className="pagination-previous">Previous</div>
-                  <div className="pagination-next">Next page</div>
+                  <div className="pagination-previous" onClick={() => setPage(page - 1 >= 0 ? page - 1 : page)}>
+                    Previous
+                  </div>
+                  <div
+                    className="pagination-next"
+                    onClick={() => setPage(page + 1 < data.count / 15 ? page + 1 : page)}
+                  >
+                    Next page
+                  </div>
                   <ul className="pagination-list">
-                    <li>
-                      <div className="pagination-link" aria-label="Goto page 1">
-                        1
-                      </div>
-                    </li>
-                    <li>
-                      <span className="pagination-ellipsis">&hellip;</span>
-                    </li>
-                    <li>
-                      <div className="pagination-link" aria-label="Goto page 45">
-                        45
-                      </div>
-                    </li>
-                    <li>
-                      <div className="pagination-link is-current" aria-label="Page 46" aria-current="page">
-                        46
-                      </div>
-                    </li>
-                    <li>
-                      <div className="pagination-link" aria-label="Goto page 47">
-                        47
-                      </div>
-                    </li>
-                    <li>
-                      <span className="pagination-ellipsis">&hellip;</span>
-                    </li>
-                    <li>
-                      <div className="pagination-link" aria-label="Goto page 86">
-                        86
-                      </div>
-                    </li>
+                    {pageButton()}
                   </ul>
                 </nav>
               </div>
