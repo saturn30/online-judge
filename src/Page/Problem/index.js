@@ -23,27 +23,33 @@ const Problem = ({ match }) => {
       <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
         <div className="box container">
           <p className="problem-data-title">{title}</p>
-          <p>{content}</p>
+          {content && content.split('\n').map((v,i) => <p key={i}>{v}</p>)}
         </div>
       </div>
     </div>
   )
-  const printExample = (v, i) => (
-    <div className="columns" style={{ marginBottom: 30 }} key = {i}>
-      <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
-        <div className="box container">
-          <p className="problem-data-title">예제 입력</p>
-          <p>{v.input_example}</p>
+  const printExample = (v, i) => {
+    return (
+      <div className="columns" style={{ marginBottom: 30 }} key={i}>
+        <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p className="problem-data-title">예제 입력 {i + 1}</p>
+            <pre>
+              [{"\n"}"{v.input_example.replace(/\n/g, '",\n"')}"{"\n"}]
+            </pre>
+          </div>
+        </div>
+        <div className="column is-4-tablet is-offset-1-mobile is-10-mobile">
+          <div className="box container">
+            <p className="problem-data-title">예제 출력 {i + 1}</p>
+            <pre>
+              [{"\n"}"{v.output_example.replace(/\n/g, '",\n"')}"{"\n"}]
+            </pre>
+          </div>
         </div>
       </div>
-      <div className="column is-4-tablet is-offset-1-mobile is-10-mobile">
-        <div className="box container">
-          <p className="problem-data-title">예제 출력</p>
-          <p>{v.output_example}</p>
-        </div>
-      </div>
-    </div>
-  )
+    )
+  }
 
   return (
     <Layout>
@@ -68,21 +74,6 @@ const Problem = ({ match }) => {
       {printInfo("입력", data.input_info)}
       {printInfo("출력", data.output_info)}
       {data.Problem_examples && data.Problem_examples.map((v, i) => printExample(v, i))}
-
-      <div className="columns" style={{ marginBottom: 30 }}>
-        <div className="column is-offset-2-tablet is-4-tablet is-offset-1-mobile is-10-mobile">
-          <div className="box container">
-            <p className="problem-data-title">예제 입력</p>
-            <p>1 2</p>
-          </div>
-        </div>
-        <div className="column is-4-tablet is-offset-1-mobile is-10-mobile">
-          <div className="box container">
-            <p className="problem-data-title">예제 출력</p>
-            <p>3</p>
-          </div>
-        </div>
-      </div>
     </Layout>
   )
 }
