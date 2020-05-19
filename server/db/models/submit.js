@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Submit = sequelize.define('Submit', {
     code: DataTypes.STRING,
-    solved: DataTypes.BOOLEAN
+    solved: {type : DataTypes.BOOLEAN, defaultValue: false}
   }, {});
   Submit.associate = function(models) {
     // associations can be defined here

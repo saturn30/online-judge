@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
     const hash = data.dataValues.password
     const bcr = bcrypt.compareSync(pw, hash)
     if (bcr) {
-      const token = jwt.sign({ id }, jwt_secret, { expiresIn: "30d" })
+      const token = jwt.sign({ id: data.id }, jwt_secret, { expiresIn: "30d" })
       return res.json({ message: "success", token })
     } else {
       return res.json({ message: "비밀번호가 일치하지 않습니다." })

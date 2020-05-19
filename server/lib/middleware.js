@@ -5,7 +5,7 @@ module.exports.isAdmin = (req, res, next) => {
   const token = req.headers.authorization
   try{
     const decoded = jwt.verify(token, jwt_secret)
-    if(decoded.id === 'admin'){
+    if(decoded.id === 1){
       next()
     }
     else {
@@ -17,6 +17,14 @@ module.exports.isAdmin = (req, res, next) => {
   }
 }
 
-module.exports.isLogin = (req, res) => {
-  
+module.exports.isLogin = (req, res, next) => {
+  const token = req.headers.authorization
+  try{
+    const decoded = jwt.verify(token, jwt_secret)
+    req.body.UserId = decoded.id
+    next()
+  }
+  catch {
+    return res.json({message : "로그인이 필요합니다."})
+  }
 }
