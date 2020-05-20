@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { isAdmin } = require("../lib/middleware")
+const { isAdmin, getUserId, isLogin } = require("../lib/middleware")
 
 const models = require("../db/models")
 
@@ -32,11 +32,21 @@ router.post("/create", isAdmin, async (req, res) => {
 router.get("/list/:page", async (req, res) => {
   const page = Number(req.params.page)
   const result = await models.Problem.findAndCountAll({
-    attributes: ["id", "title", "total_submit", "total_hit"],
+    attributes: ["id", "title", "total_submit", "total_solved"],
     offset: page * 15,
     limit: 15,
   })
   res.json(result)
+})
+
+router.post("/getUserSubmit", isLogin, async (req, res) => {
+  const { ProblemId, UserId } = req.body
+  const submitData = await models.Submit.findAll({
+    where: { ProblemId, UserId },
+    include: [{ model: models.Submit_result }],
+    order: [["id", "DESC"]],
+  })
+  res.send(submitData)
 })
 
 router.get("/:id", async (req, res) => {

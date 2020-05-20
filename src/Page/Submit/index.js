@@ -1,6 +1,10 @@
 import React, { useState } from "react"
 import Layout from "../../Component/Layout"
+import { useCookies } from "react-cookie"
 import "./Submit.scss"
+
+import axios from "axios"
+import { serverIP } from "../../lib/key"
 
 import AceEditor from "react-ace"
 
@@ -8,7 +12,15 @@ import "ace-builds/src-noconflict/mode-javascript"
 import "ace-builds/src-noconflict/theme-monokai"
 
 const Submit = ({ match }) => {
-  const [code, setCode] = useState("function(input) {\n\tlet answer = [];\n\n\treturn answer;\n}")
+  const [code, setCode] = useState("function solve(input) {\n\tlet answer = [];\n\n\treturn answer;\n}")
+  const [cookies] = useCookies(["token"])
+
+  const onclickSubmit = async () => {
+    console.log('발사~')
+    const res = await axios.post(serverIP + "/submit/judge", { code, ProblemId: match.params.id }, { headers: { Authorization: cookies.token } })
+    console.log(res)
+  }
+
   return (
     <Layout>
       <section className="hero is-primary">
@@ -34,8 +46,10 @@ const Submit = ({ match }) => {
           />
         </div>
       </div>
-      <div className="buttons is-centered" style={{marginBottom: 20}}>
-        <div className="button is-success">제출하기</div>
+      <div className="buttons is-centered" style={{ marginBottom: 20 }}>
+        <div className="button is-success" onClick={onclickSubmit}>
+          제출하기
+        </div>
       </div>
     </Layout>
   )

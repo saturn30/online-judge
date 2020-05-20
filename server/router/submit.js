@@ -33,6 +33,10 @@ router.post("/judge", isLogin, async (req, res) => {
               console.log(i, msg)
               worker.terminate()
               let check = true
+              if(!msg.answer){
+                judge.result = "에러"
+                return resolve(judge)
+              }
               if (Array.isArray(msg.answer) && msg.answer.length === output_arr.length) {
                 for (let i = 0; i < output_arr.length; i++) {
                   if (msg.answer[i] != output_arr[i]) check = false
@@ -41,22 +45,23 @@ router.post("/judge", isLogin, async (req, res) => {
               if (check) {
                 judge.time = msg.time
                 judge.result = "정답"
-                resolve(judge)
+                return resolve(judge)
               } else {
+                judge.time = msg.time
                 judge.result = "오답"
-                resolve(judge)
+                return resolve(judge)
               }
             })
             setTimeout(() => {
               if (!done) {
                 worker.terminate()
                 judge.result = "시간초과"
-                resolve(judge)
+                return resolve(judge)
               }
-            }, 10000)
+            }, problem.dataValues.limit)
           } catch (e) {
-            judge.result = "오답"
-            resolve(judge)
+            judge.result = "에러"
+            return resolve(judge)
           }
         })
     )
@@ -67,6 +72,7 @@ router.post("/judge", isLogin, async (req, res) => {
     models.Submit_result.create(v)
   })
   submit.solved = solved
+  submit.done = true
   if (!user_problem.solve) {
     user.total_submit = user.total_submit + 1
     problem.total_submit = problem.total_submit + 1

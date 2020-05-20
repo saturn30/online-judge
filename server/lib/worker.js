@@ -9,6 +9,6 @@ parentPort.on("message", ({ code, input_arr }) => {
     parentPort.postMessage({ answer, time: end - start })
   }
   catch(e){
-    parentPort.postMessage({ answer: null, time: 0 })
+    parentPort.postMessage({ answer: false, time: 0 })
   }
 })

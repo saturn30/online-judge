@@ -70,7 +70,7 @@ const ProblemList = () => {
                             </Link>
                           </td>
                           <td>{v.total_submit}</td>
-                          <td>{v.total_submit ? v.total_hit / v.total_submit : 0} %</td>
+                          <td>{v.total_submit ? v.total_solved / v.total_submit : 0} %</td>
                           <td>정답</td>
                         </tr>
                       ))}
