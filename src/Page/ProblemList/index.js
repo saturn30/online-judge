@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react"
 import Layout from "../../Component/Layout"
 import axios from "axios"
 import { serverIP } from "../../lib/key"
-//import { useCookies } from "react-cookie"
+import { useCookies } from "react-cookie"
 
 import { Link } from "react-router-dom"
 
 import "./ProblemList.scss"
 
 const ProblemList = () => {
-  //const [cookies] = useCookies(["token"]) - 나중에 유저 정답여부 확인
+  const [cookies] = useCookies(["token"])
   const [page, setPage] = useState(0)
   const [data, setData] = useState({})
 
   useEffect(() => {
     const fetch = async () => {
-      const fetchData = await axios.get(serverIP + "/problem/list/" + page)
+      const fetchData = await axios.get(serverIP + "/problem/list/" + page, {
+        headers: { Authorization: cookies.token },
+      })
+      console.log(fetchData)
       setData(fetchData.data)
     }
     fetch()
@@ -23,17 +26,18 @@ const ProblemList = () => {
 
   const pageButton = () => {
     const arr = []
-    for(let i = 0; i < data.count / 15; i++){
-      if(arr.length >=5) break;
-      if(i < page - 2) continue;
-      arr.push(i);
+    for (let i = 0; i < data.count / 15; i++) {
+      if (arr.length >= 5) break
+      if (i < page - 2) continue
+      arr.push(i)
     }
-    return arr.map((v, i) => 
-    <li key={i}>
-      <div className={`pagination-link ${page === v ? "is-current" : null}`} onClick={() => setPage(v)}>
-        {v + 1}
-      </div>
-    </li>)
+    return arr.map((v, i) => (
+      <li key={i}>
+        <div className={`pagination-link ${page === v ? "is-current" : null}`} onClick={() => setPage(v)}>
+          {v + 1}
+        </div>
+      </li>
+    ))
   }
 
   return (
@@ -44,7 +48,7 @@ const ProblemList = () => {
             <div className="table-container">
               <div className="container">
                 <div className="is-pulled-left">전체 문제 목록</div>
-                <div className="is-pulled-right">
+                <div className="button is-pulled-right" style={{ marginBottom: 20 }}>
                   <Link to="/problemcreate">문제 생성하기</Link>
                 </div>
               </div>
@@ -70,8 +74,16 @@ const ProblemList = () => {
                             </Link>
                           </td>
                           <td>{v.total_submit}</td>
-                          <td>{v.total_submit ? v.total_solved / v.total_submit : 0} %</td>
-                          <td>정답</td>
+                          <td>{v.total_submit ? Math.floor((v.total_solved / v.total_submit) * 100) : 0} %</td>
+                          <td>
+                            {v.User_problems.length === 0 ? (
+                              "-"
+                            ) : v.User_problems[0].solved ? (
+                              <span style={{ color: "green", fontWeight: "bold" }}>정답</span>
+                            ) : (
+                              <span style={{ color: "red", fontWeight: "bold" }}>오답</span>
+                            )}
+                          </td>
                         </tr>
                       ))}
                 </tbody>
@@ -87,9 +99,7 @@ const ProblemList = () => {
                   >
                     Next page
                   </div>
-                  <ul className="pagination-list">
-                    {pageButton()}
-                  </ul>
+                  <ul className="pagination-list">{pageButton()}</ul>
                 </nav>
               </div>
             </div>

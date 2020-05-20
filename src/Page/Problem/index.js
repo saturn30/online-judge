@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../Component/Layout"
+import Submit from "../../Component/Submit"
 import { Link } from "react-router-dom"
 import { useCookies } from "react-cookie"
 
@@ -15,7 +16,6 @@ const Problem = ({ match }) => {
   useEffect(() => {
     const fetch = async () => {
       const fetchData = await axios.get(serverIP + "/problem/" + match.params.id)
-      console.log(fetchData.data)
       setData(fetchData.data)
     }
     fetch()
@@ -70,9 +70,9 @@ const Problem = ({ match }) => {
   }
 
   const printSubmit = () => {
-    if (!Array.isArray(submitData) || !submitData.length) return null
+    if (!Array.isArray(submitData) || !submitData.length) return <div style={{marginTop: 30}}></div>
     return (
-      <div className="columns" style={{ marginTop: 30 }}>
+      <div className="columns" style={{ marginTop: 30, marginBottom: 30 }}>
         <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
           <div className="box container">
             <p className="problem-data-title">채점기록</p>
@@ -99,29 +99,31 @@ const Problem = ({ match }) => {
                           ])
                         }
                       >
-                        <td>{v.id}</td>
+                        <td>{i+1}</td>
                         <td>
-                          {v.solved ? (
+                          {v.done ? v.solved ? (
                             <span style={{ color: "green", fontWeight: "bold" }}>정답입니다</span>
                           ) : (
                             <span style={{ color: "red", fontWeight: "bold" }}>오답입니다</span>
-                          )}
+                          ) : 
+                          <span style={{ color: "gold", fontWeight: "bold" }}>채점 중입니다..</span>}
                         </td>
                         <td>{v.code.length}</td>
                         <td>
-                          {date.getFullYear() % 100}-{date.getMonth() + 1}-{date.getDate()} / {date.getHours()}:{date.getMinutes()}
+                          {date.getFullYear() % 100}-{date.getMonth() + 1}-{date.getDate()} / {date.getHours()}:
+                          {date.getMinutes()}
                         </td>
                       </tr>
                       {v.toggle && (
                         <tr>
                           <td colSpan={4}>
                             <div>
-                              <table className="table" style={{ marginVertical: 30, width: "100%" }}>
+                              <table className="table" style={{ marginTop: 15, marginBottom: 15, width: "100%" }}>
                                 <thead>
                                   <tr>
-                                    <th>테스트케이스</th>
-                                    <th>결과</th>
-                                    <th>시간</th>
+                                    <th style={{ width: "30%" }}>테스트케이스</th>
+                                    <th style={{ width: "40%" }}>결과</th>
+                                    <th style={{ width: "30%" }}>시간</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -129,7 +131,7 @@ const Problem = ({ match }) => {
                                     <tr key={judge_i}>
                                       <td>{judge_i + 1} 번</td>
                                       <td>{judge_v.result}</td>
-                                      <td>{judge_v.time ? judge_v.time + " ms" : "-"}</td>
+                                      <td>{judge_v.time !== null ? judge_v.time + " ms" : "-"}</td>
                                     </tr>
                                   ))}
                                 </tbody>
@@ -149,10 +151,10 @@ const Problem = ({ match }) => {
     )
   }
   const isSolved = () => {
-    if(!Array.isArray(submitData) || !submitData.length) return "is-dark"
+    if (!Array.isArray(submitData) || !submitData.length) return "is-dark"
     let solved = false
     submitData.forEach((v) => {
-      if(v.solved) solved = true
+      if (v.solved) solved = true
     })
     return solved ? "is-success" : "is-danger"
   }
@@ -169,19 +171,27 @@ const Problem = ({ match }) => {
       </section>
 
       {printSubmit()}
-
-      <div className="columns" style={{ marginTop: 30 }}>
-        <div className="column problem-submit-button is-offset-8 is-2 is-offset-10-mobile is-1-mobile">
-          <div className="button is-info is-light">
-            <Link to={"/submit/" + match.params.id}>제출하기</Link>
-          </div>
-        </div>
-      </div>
-
+      {printInfo("제한시간", data.limit + " ms")}
       {printInfo("문제", data.problem_info)}
       {printInfo("입력", data.input_info)}
       {printInfo("출력", data.output_info)}
       {data.Problem_examples && data.Problem_examples.map((v, i) => printExample(v, i))}
+
+      <div className="columns" style={{ marginTop: 50 }}>
+      <div className="column is-offset-2-tablet is-8-tablet is-offset-1-mobile is-10-mobile">
+          <article className="message is-danger">
+            <div className="message-header">
+              <p>주의</p>
+            </div>
+            <div className="message-body">
+              <p>- 세미콜론 필수</p>
+              <p>- 입력 데이터 input은 예제 데이터 형식의 배열입니다.</p>
+              <p>- 출력 데이터 예제와 같이 배열형태의 answer를 리턴해주세요.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <Submit ProblemId={match.params.id} />
     </Layout>
   )
 }

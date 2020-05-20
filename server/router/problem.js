@@ -29,13 +29,15 @@ router.post("/create", isAdmin, async (req, res) => {
   })
 })
 
-router.get("/list/:page", async (req, res) => {
+router.get("/list/:page", getUserId, async (req, res) => {
   const page = Number(req.params.page)
   const result = await models.Problem.findAndCountAll({
     attributes: ["id", "title", "total_submit", "total_solved"],
     offset: page * 15,
     limit: 15,
+    include: [{ model: models.User_problem, where: { UserId: req.body.UserId }, required: false }],
   })
+  console.log(result)
   res.json(result)
 })
 
