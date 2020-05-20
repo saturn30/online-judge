@@ -15,8 +15,17 @@ const Submit = ({ ProblemId }) => {
   const [cookies] = useCookies(["token"])
 
   const onclickSubmit = async () => {
-    const res = await axios.post(serverIP + "/submit/judge", { code, ProblemId }, { headers: { Authorization: cookies.token } })
-    window.location.reload();
+    const res = await axios.post(
+      serverIP + "/submit/judge",
+      { code, ProblemId },
+      { headers: { Authorization: cookies.token } }
+    )
+    if (res.data === "success") {
+      window.location.reload()
+      window.scrollTo(0, 0)
+    } else {
+      alert("로그인이 필요합니다.")
+    }
   }
 
   return (

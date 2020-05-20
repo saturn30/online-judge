@@ -83,7 +83,7 @@ router.post("/judge", isLogin, async (req, res) => {
   problem.save()
   user_problem.save()
   submit.save()
-  res.send(judge_result)
+  res.send("success")
 })
 
 module.exports = router
