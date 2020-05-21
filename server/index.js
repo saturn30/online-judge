@@ -5,6 +5,7 @@ const sequelize = require("./db/models").sequelize
 const authRouter = require("./router/auth")
 const problemRouter = require('./router/problem')
 const submitRouter = require('./router/submit')
+const mypageRouter = require('./router/mypage')
 
 const app = express()
 sequelize
@@ -29,6 +30,7 @@ app.use(express.json())
 app.use("/auth", authRouter)
 app.use('/problem', problemRouter)
 app.use('/submit', submitRouter)
+app.use('/myPage', mypageRouter)
 
 app.listen(3030, () => {
   console.log("서버연결")

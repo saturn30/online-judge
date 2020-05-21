@@ -37,7 +37,6 @@ router.get("/list/:page", getUserId, async (req, res) => {
     limit: 15,
     include: [{ model: models.User_problem, where: { UserId: req.body.UserId }, required: false }],
   })
-  console.log(result)
   res.json(result)
 })
 
