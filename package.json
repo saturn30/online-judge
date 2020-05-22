@@ -35,7 +35,6 @@
     "eject": "react-scripts eject",
     "css-build": "node-sass --omit-source-map-url ./src/lib/myBulma.scss ./src/lib/myBulma.css"
   },
-  "proxy": "http://localhost:3030",
   "eslintConfig": {
     "extends": "react-app"
   },

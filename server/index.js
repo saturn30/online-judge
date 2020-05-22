@@ -8,7 +8,7 @@ const problemRouter = require("./router/problem")
 const submitRouter = require("./router/submit")
 const mypageRouter = require("./router/mypage")
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3030
 
 const app = express()
 sequelize
@@ -24,7 +24,7 @@ sequelize
   })
 
 const corsOptions = {
-  origin: "http://localhost:" + port, // 허락하고자 하는 요청 주소
+  origin: "http://localhost:3000", // 허락하고자 하는 요청 주소
   credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.
 }
 

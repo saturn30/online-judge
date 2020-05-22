@@ -1,1 +1,1 @@
-module.exports.serverIP = ''
+module.exports.serverIP = process.env.NODE_ENV === "development" ? "http://localhost:3030" : ""
