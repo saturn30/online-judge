@@ -26,7 +26,7 @@ const corsOptions = {
   credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.
 }
 
-app.use(express.static(path.join(__dirname, "build")))
+app.use(express.static(path.join(__dirname, "../build")))
 
 app.use(cors(corsOptions))
 app.use(express.json())
@@ -37,7 +37,7 @@ app.use("/submit", submitRouter)
 app.use("/myPage", mypageRouter)
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"))
+  res.sendFile(path.join(__dirname, "../build", "index.html"))
 })
 
 app.listen(80, () => {
