@@ -1,1 +1,1 @@
-module.exports.serverIP = 'http://localhost:80'
+module.exports.serverIP = ''

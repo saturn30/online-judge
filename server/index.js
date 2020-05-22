@@ -8,6 +8,8 @@ const problemRouter = require("./router/problem")
 const submitRouter = require("./router/submit")
 const mypageRouter = require("./router/mypage")
 
+const port = process.env.PORT || 3000
+
 const app = express()
 sequelize
   .sync()
@@ -22,7 +24,7 @@ sequelize
   })
 
 const corsOptions = {
-  origin: "http://localhost:3000", // 허락하고자 하는 요청 주소
+  origin: "http://localhost:" + port, // 허락하고자 하는 요청 주소
   credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.
 }
 
@@ -40,6 +42,6 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../build", "index.html"))
 })
 
-app.listen(80, () => {
+app.listen(port, () => {
   console.log("서버연결")
 })
