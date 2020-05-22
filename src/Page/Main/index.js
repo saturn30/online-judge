@@ -15,9 +15,21 @@ const SimpleSwiper = () => {
 
   return (
     <Swiper {...params}>
-      <div className="slide_item">Slide 1</div>
-      <div className="slide_item">Slide 2</div>
-      <div className="slide_item">Slide 3</div>
+      <div className="slide_item">
+        <span className="title" style={{ color: "white", fontWeight: "bold" }}>
+          JS 온라인 저지 사이트입니다.
+        </span>
+      </div>
+      <div className="slide_item">
+        <span className="title" style={{ color: "white", fontWeight: "bold" }}>
+          JS 온라인 저지 사이트입니다.
+        </span>
+      </div>
+      <div className="slide_item">
+        <span className="title" style={{ color: "white", fontWeight: "bold" }}>
+          JS 온라인 저지 사이트입니다.
+        </span>
+      </div>
     </Swiper>
   )
 }
@@ -29,9 +41,9 @@ export default () => {
       <div className="columns">
         <div className="column is-offset-2-tablet is-8-tablet">
           <div className="main-problem-container">
-            <div className="box main-problem-item">문제 1</div>
-            <div className="box main-problem-item">문제 2</div>
-            <div className="box main-problem-item">문제 3</div>
+            <div className="box main-problem-item">컨텐츠 1</div>
+            <div className="box main-problem-item">컨텐츠 2</div>
+            <div className="box main-problem-item">컨텐츠 3</div>
           </div>
         </div>
       </div>

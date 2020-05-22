@@ -11,14 +11,20 @@
   @media screen and (max-width: 32rem) {
     height: 10rem !important;
   }
-}
+} 
 
 .slide_item {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @for $i from 0 to 4 {
+  &:nth-child(1) {
+    background-image: url("../../lib/background.jpeg");
+    background-repeat : no-repeat;
+    background-size: cover;
+  }
+
+  @for $i from 2 to 4 {
     &:nth-child(#{$i}) {
       @include random-bgr();
     }
