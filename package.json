@@ -28,7 +28,7 @@
     "swiper": "^5.3.6"
   },
   "scripts": {
-    "start" : "node server/index",
+    "start" : "nodemon server/index",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

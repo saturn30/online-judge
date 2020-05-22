@@ -10,7 +10,6 @@ const { isAdmin } = require("../lib/middleware")
 
 router.post("/join", async (req, res) => {
   const { ID, pw } = req.body
-  console.log(ID, pw)
   const exist = await models.User.findOne({ where: { user_id: ID } })
   if (exist) {
     return res.send("exist")

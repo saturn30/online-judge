@@ -35,7 +35,7 @@ const ProblemCreate = () => {
     const res = await axios.post(serverIP + "/problem/create", submitData, {
       headers: { Authorization: cookies.token },
     })
-    console.log(res.data)
+    alert('생성완료')
   }
 
   const make = () => (

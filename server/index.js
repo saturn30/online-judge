@@ -3,10 +3,7 @@ const path = require("path")
 const cors = require("cors")
 const sequelize = require("./db/models").sequelize
 
-const authRouter = require("./router/auth")
-const problemRouter = require("./router/problem")
-const submitRouter = require("./router/submit")
-const mypageRouter = require("./router/mypage")
+const apiRouter = require('./router')
 
 const port = process.env.PORT || 3030
 
@@ -33,10 +30,7 @@ app.use(express.static(path.join(__dirname, "../build")))
 app.use(cors(corsOptions))
 app.use(express.json())
 
-app.use("/auth", authRouter)
-app.use("/problem", problemRouter)
-app.use("/submit", submitRouter)
-app.use("/myPage", mypageRouter)
+app.use("/api", apiRouter)
 
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "../build", "index.html"))

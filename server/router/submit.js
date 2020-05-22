@@ -7,7 +7,7 @@ const models = require("../db/models")
 
 router.post("/judge", isLogin, async (req, res) => {
   const { UserId, ProblemId } = req.body
-  const code = req.body.code.replace(/\n|\t/gi, "")
+  const code = req.body.code.replace(/\n|\t/gi, "").replace(/import|require/gi, "")
   const problem = await models.Problem.findOne({
     where: { id: ProblemId },
     include: [{ model: models.Problem_judge }],
@@ -24,13 +24,12 @@ router.post("/judge", isLogin, async (req, res) => {
           const input_arr = input_judge.split("\n").filter((v) => v.trim())
           const output_arr = output_judge.split("\n").filter((v) => v.trim())
           const judge = { ProblemJudgeId: id, SubmitId: submit.id }
-          const worker = new Worker("./lib/worker.js")
+          const worker = new Worker("./server/lib/worker.js")
           try {
             worker.postMessage({ code, input_arr })
             let done = false
             worker.on("message", (msg) => {
-              done = true
-              console.log(i, msg)
+              done = true 
               worker.terminate()
               let check = true
               if(!msg.answer){

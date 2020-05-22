@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../../Component/Layout"
 import Submit from "../../Component/Submit"
-import { Link } from "react-router-dom"
 import { useCookies } from "react-cookie"
 
 import axios from "axios"
